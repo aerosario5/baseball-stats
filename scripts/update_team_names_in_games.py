@@ -1,15 +1,10 @@
-import statsapi
-import requests
-import time
-from datetime import datetime
 from games.models import Game, Team
-import pandas as pd
-from django.core.exceptions import ObjectDoesNotExist
 
 team_objects = Team.objects.all()
-teams = {team.id: team.team_name for team in team_objects}
+teams = {str(team.id): team.team_name for team in team_objects}
 
 def update_team_names_in_games(games = []):
+    print(teams)
     if not games:
         games = Game.objects.all()
     for game in games:
